@@ -1,2 +1,0 @@
-puppet-nsca_report
-==================
