@@ -1,5 +1,5 @@
 name    'alexh-nsca_report'
-version '0.0.1'
+version '0.0.2'
 source 'https://github.com/alexanderhofmann/puppet-nsca_report'
 author 'alexh'
 license 'Apache License, Version 2.0'
