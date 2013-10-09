@@ -59,6 +59,7 @@ in /etc/puppet/nsca.yaml. Example:
 :nsca_port: 5667
 :service_desc: NRPE_puppet_status
 :strip_domain: true
+:only_env: production
 ```
 
 
