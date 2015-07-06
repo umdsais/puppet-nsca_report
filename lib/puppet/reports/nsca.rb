@@ -58,6 +58,10 @@ Puppet::Reports.register_report(:nsca) do
     # format: <host_name>[tab]<svc_description>[tab]<return_code>[tab]<plugin_output>[newline]
     message = "#{client}\t#{SERVICE_DESC}\t#{return_code}\t#{output}|#{perfdata}\n"
 
-    system("echo \"#{message}\" | #{NSCA_BINARY} -H #{NSCA_HOST} -c #{NSCA_CONFIG} -p #{NSCA_PORT}")
+    command_output = %x{echo "#{message}" | #{NSCA_BINARY} -H #{NSCA_HOST} -c #{NSCA_CONFIG} -p #{NSCA_PORT}}
+    if $?.exitstatus != 0
+      raise Puppet::Error, "Sending report to Nagios failed: '#{command_output}'"
+    end
+
   end
 end
