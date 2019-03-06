@@ -20,6 +20,10 @@
 #   Portnumber of nsca server
 #   Default: 5667
 #
+# [*puppet_dir*]
+#   Directory where rest of puppet configuration is
+#   Default: $::puppet::dir
+#
 # [*only_env*]
 #   Only report for this puppet environment
 #   Default: 'production'
@@ -47,12 +51,13 @@ class nsca_report(
   $nsca_config  = '/etc/nagios/send_nsca.cfg',
   $nsca_host    = 'nagios',
   $nsca_port    = 5667,
+  $puppet_dir   = $::puppet::dir,
   $only_env     = 'production',
   $service_desc = 'puppet_status',
   $strip_domain = true,
 ){
 
-  file { '/etc/puppet/nsca.yaml':
+  file { "$puppet_dir/nsca.yaml":
     ensure  => file,
     owner   => 'root',
     group   => 'root',
