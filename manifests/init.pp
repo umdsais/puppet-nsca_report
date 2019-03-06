@@ -55,7 +55,7 @@ class nsca_report(
   $only_env     = 'production',
   $service_desc = 'puppet_status',
   $strip_domain = true,
-){
+)inherits puppet{
 
   file { "$puppet_dir/nsca.yaml":
     ensure  => file,
