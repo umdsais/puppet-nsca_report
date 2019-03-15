@@ -21,7 +21,6 @@ Puppet::Reports.register_report(:nsca) do
   DESC
 
   def process
-    if self.kind == 'apply'
       if ONLY_ENV == self.environment
         if STRIP_DOMAIN == true
           client = self.host.split('.').first
@@ -53,7 +52,6 @@ Puppet::Reports.register_report(:nsca) do
           }
         }
       end
-    end
     
     # format: <host_name>[tab]<svc_description>[tab]<return_code>[tab]<plugin_output>[newline]
     message = "#{client}\t#{SERVICE_DESC}\t#{return_code}\t#{output}|#{perfdata}\n"
